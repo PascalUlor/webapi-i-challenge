@@ -48,6 +48,26 @@ server.get("/api/users/:id", (req, res) => {
     );
 });
 
+server.post("/api/users/", (req, res) => {
+  const { name, bio } = req.body;
+  if (name === "" || bio === "") {
+    res.status(400).json({
+      status: 400,
+      error: "Please provide name and bio for the user."
+    });
+  }
+  Users.insert({ name, bio })
+    .then(data => {
+      console.log(res);
+      res.status(201).json({
+        status: 201,
+        id: data.id,
+        message: `user with id ${data.id} created`
+      });
+    })
+    .catch(err => console.log(err));
+});
+
 /**
  * All wrong routes
  */
