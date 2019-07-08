@@ -1,11 +1,13 @@
 // implement your API here
 const express = require("express");
 const Users = require("./data/db");
+const cors = require("cors");
 
 const port = 3000 || process.env;
 const server = express();
 
 server.use(express.json());
+server.use(cors());
 
 server.get("/api/users/", (req, res) => {
   Users.find()
