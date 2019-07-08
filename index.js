@@ -28,7 +28,7 @@ server.get("/api/users/", (req, res) => {
 });
 
 server.get("/api/users/:id", (req, res) => {
-  const id = parseInt(req.params.id, 10);
+  const id = req.params.id;
   Users.findById(id)
     .then(users => {
       console.log(res);
@@ -71,6 +71,26 @@ server.post("/api/users/", (req, res) => {
         error: "There was an error while saving the user to the database"
       });
     });
+});
+
+server.delete("/api/users/:id", (req, res) => {
+  const id = req.params.id;
+  Users.remove(id)
+    .then(user => {
+      if (!user) {
+        res.status(404).json({
+          status: 404,
+          message: `User with ${id} does not exist`
+        });
+      }
+      res.status(200).json(user);
+    })
+    .catch(err =>
+      res.status(500).json({
+        status: 500,
+        error: "The user could not be removed"
+      })
+    );
 });
 
 /**
