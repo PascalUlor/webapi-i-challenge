@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import CharCard from "./components/CharCard";
 
 const baseUrl = `http://localhost:3000/api/users`;
 
@@ -15,23 +16,26 @@ function App() {
       })
       .catch(err => {
         setError(err.statusText);
+        return error;
       });
   };
 
-  useEffect(() => {
-    FetchUsers();
-  }, []);
+  const DeleteUser = id => {
+    axios
+      .delete(`${baseUrl}/${id}`)
+      .then(res => {
+        console.log("-----Working", res.data);
+      })
+      .catch(err => {
+        console.log("---------", err);
+      });
+  };
+
+  useEffect(FetchUsers, []);
 
   return (
     <div className="App">
-      {users.map(user => {
-        return (
-          <div>
-            <p>{user.name}</p>
-            <p>{user.bio}</p>
-          </div>
-        );
-      })}
+      <CharCard users={users} DeleteUser={DeleteUser} />
     </div>
   );
 }
