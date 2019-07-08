@@ -50,10 +50,8 @@ function App() {
     await axios
       .get(`${baseUrl}/${id}`)
       .then(res => {
-        console.log(res.data.id);
         setCurrentCharId(res.data.id);
         const charEdit = chars.find(char => char.id === res.data.id);
-        console.log(charEdit);
         if (charEdit) {
           setNewChar({
             name: charEdit.name,
