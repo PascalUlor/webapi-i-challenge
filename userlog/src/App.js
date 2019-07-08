@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CharCard from "./components/CharCard";
+import CharForm from "./components/CharForm";
 
 const baseUrl = `http://localhost:3000/api/users`;
 
@@ -19,12 +20,12 @@ function App() {
         return error;
       });
   };
-
   const DeleteUser = id => {
     axios
       .delete(`${baseUrl}/${id}`)
       .then(res => {
         console.log("-----Working", res.data);
+        FetchUsers();
       })
       .catch(err => {
         console.log("---------", err);
@@ -36,6 +37,7 @@ function App() {
   return (
     <div className="App">
       <CharCard users={users} DeleteUser={DeleteUser} />
+      <CharForm />
     </div>
   );
 }
