@@ -28,6 +28,9 @@ const Card = styled.div`
   height: 6rem;
   background-color: rgba(65, 66, 46, 0.8);
   /* #41422e */
+  margin: 1rem auto;
+  line-height: 2rem;
+  color: #9399a4;
 `;
 
 export default CharCard;

@@ -89,21 +89,24 @@ function App() {
   useEffect(FetchChars, []);
 
   return (
-    <Main>
-      <CharCard
-        chars={chars}
-        DeleteUser={DeleteUser}
-        GetCharsById={GetCharsById}
-      />
-      <CharForm
-        chars={chars}
-        UpdateChar={UpdateChar}
-        addChar={addChar}
-        handleInputChange={handleInputChange}
-        newChar={newChar}
-        IsEdit={currentCharId}
-      />
-    </Main>
+    <>
+      <Header> Lord Of The Rings</Header>
+      <Main>
+        <CharCard
+          chars={chars}
+          DeleteUser={DeleteUser}
+          GetCharsById={GetCharsById}
+        />
+        <CharForm
+          chars={chars}
+          UpdateChar={UpdateChar}
+          addChar={addChar}
+          handleInputChange={handleInputChange}
+          newChar={newChar}
+          IsEdit={currentCharId}
+        />
+      </Main>
+    </>
   );
 }
 
@@ -119,6 +122,14 @@ const Main = styled.div`
   min-height: 100vh;
   position: relative;
   text-align: center;
+`;
+
+const Header = styled.h1`
+  @import url("https://fonts.googleapis.com/css?family=Petrona&display=swap");
+  font-family: "Petrona", serif;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 2rem;
 `;
 
 export default App;
