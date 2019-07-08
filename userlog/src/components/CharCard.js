@@ -1,17 +1,16 @@
 import React from "react";
 
 const CharCard = props => {
-  console.log("========", props);
-  const { users, DeleteUser } = props;
+  const { chars, DeleteUser, GetCharsById } = props;
   return (
     <div>
-      {users.map(char => {
+      {chars.map(char => {
         return (
           <div key={char.id}>
             <p>{char.name}</p>
             <p>{char.bio}</p>
             <span>
-              <button>Edit</button>
+              <button onClick={() => GetCharsById(char.id)}>Edit</button>
             </span>
             <span>
               <button onClick={() => DeleteUser(char.id)}>Delete</button>

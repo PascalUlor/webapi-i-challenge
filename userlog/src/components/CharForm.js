@@ -1,38 +1,10 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 
-const baseUrl = `http://localhost:3000/api/users`;
-
-const CharForm = () => {
-  const [newChar, setNewChar] = useState({
-    name: "",
-    bio: ""
-  });
-
-  const addChar = event => {
-    let CharDeet = {
-      name: newChar.name,
-      bio: newChar.bio
-    };
-    axios
-      .post(`${baseUrl}`, CharDeet)
-      .then(res => {})
-      .catch(err => console.log(err));
-    setNewChar({
-      name: "",
-      bio: ""
-    });
-  };
-
-  const handleInputChange = e => {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
-    setNewChar(newChar => ({ ...newChar, [name]: value }));
-  };
-
+const CharForm = props => {
+  const { UpdateChar, addChar, handleInputChange, newChar, IsEdit } = props;
+  const Method = IsEdit ? UpdateChar : addChar;
   return (
-    <form onSubmit={addChar}>
+    <form onSubmit={Method}>
       <input
         type="text"
         value={newChar.name}
