@@ -65,7 +65,12 @@ server.post("/api/users/", (req, res) => {
         message: `user with id ${data.id} created`
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      res.status(500).json({
+        status: 500,
+        error: "There was an error while saving the user to the database"
+      });
+    });
 });
 
 /**
