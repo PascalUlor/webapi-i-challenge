@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 const CharCard = props => {
   const { chars, DeleteUser, GetCharsById } = props;
@@ -6,7 +7,7 @@ const CharCard = props => {
     <div>
       {chars.map(char => {
         return (
-          <div key={char.id}>
+          <Card key={char.id}>
             <p>{char.name}</p>
             <p>{char.bio}</p>
             <span>
@@ -15,11 +16,18 @@ const CharCard = props => {
             <span>
               <button onClick={() => DeleteUser(char.id)}>Delete</button>
             </span>
-          </div>
+          </Card>
         );
       })}
     </div>
   );
 };
+
+const Card = styled.div`
+  max-width: 350px;
+  height: 6rem;
+  background-color: rgba(65, 66, 46, 0.8);
+  /* #41422e */
+`;
 
 export default CharCard;

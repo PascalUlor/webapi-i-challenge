@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
 import CharCard from "./components/CharCard";
 import CharForm from "./components/CharForm";
 
@@ -88,7 +89,7 @@ function App() {
   useEffect(FetchChars, []);
 
   return (
-    <div className="App">
+    <Main>
       <CharCard
         chars={chars}
         DeleteUser={DeleteUser}
@@ -102,8 +103,22 @@ function App() {
         newChar={newChar}
         IsEdit={currentCharId}
       />
-    </div>
+    </Main>
   );
 }
+
+const Main = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent),
+    url(https://i.pinimg.com/originals/2e/65/68/2e656825f9bf5c52bc3febdac8f43945.jpg)
+      center/cover no-repeat border-box,
+    skyblue;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  text-align: center;
+`;
 
 export default App;
