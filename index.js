@@ -105,11 +105,10 @@ server.put("/api/users/:id", (req, res) => {
   console.log(req.body, id);
   Users.update(id, { name, bio })
     .then(user => {
-      console.log("=========", user);
       res.status(200).json({
         status: 200,
         message: "update successful",
-        data: user
+        data: { name, bio }
       });
     })
     .catch(err => {
